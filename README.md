@@ -24,7 +24,7 @@ The idea behind this library is simple:
 
 Check whether a number is within a specific range.
 
-Supports multiple data types using **Function Overloading**:
+The class supports multiple data types using **Function Overloading**:
 
 * `short`
 * `int`
@@ -43,19 +43,16 @@ clsInputValidate::IsNumberBetween(50, 1, 100);
 
 Validate whether a date exists within a specific date range.
 
-The function supports both cases:
-
-```text
-From → To
-To   → From
-```
-
-It also provides a function to check whether a date itself is valid.
-
-Example:
+`IsDateBetween()` supports both normal and reversed date ranges.
 
 ```cpp
 clsInputValidate::IsDateBetween(Date, From, To);
+```
+
+The class also provides date validation through:
+
+```cpp
+clsInputValidate::IsValidDate(Date);
 ```
 
 ---
@@ -68,7 +65,7 @@ Read an integer from the user while handling invalid input.
 int Number = clsInputValidate::ReadIntNumber();
 ```
 
-If the user enters an invalid value, the input is cleared and the user is asked to enter the value again.
+If the user enters an invalid value, the input stream is cleared and the invalid input is removed before asking again.
 
 ---
 
@@ -106,7 +103,7 @@ This project helped me practice and apply several C++ concepts:
 * Static Member Functions
 * Function Overloading
 * Input Validation
-* Exception-safe input handling
+* Input Stream Handling
 * `cin.clear()`
 * `cin.ignore()`
 * `numeric_limits`
@@ -123,6 +120,7 @@ Input-Validation-Library/
 │
 ├── clsInputValidate.h
 ├── clsDate.h
+├── clsString.h
 └── main.cpp
 ```
 
@@ -172,7 +170,7 @@ double Number = clsInputValidate::ReadDblNumberBetween(0.0, 100.0);
 ### Validate a Date
 
 ```cpp
-if (clsInputValidate::IsValideDate(Date))
+if (clsInputValidate::IsValidDate(Date))
     cout << "Valid Date";
 ```
 
@@ -187,17 +185,24 @@ if (clsInputValidate::IsDateBetween(Date, From, To))
 
 ## 🧪 Testing
 
-A `main.cpp` file can be used to test and demonstrate the available functions.
+The project includes a `main.cpp` test program that demonstrates and tests the functionality of `clsInputValidate`.
 
-The class can be tested with:
+The tests cover:
 
-* Different integer values
-* Different double values
-* Valid and invalid user input
-* Numbers inside and outside a specific range
-* Valid and invalid dates
-* Dates between two dates
+* `IsNumberBetween()` with different data types
+* Valid and invalid number ranges
+* `IsDateBetween()`
+* Normal date ranges
 * Reversed date ranges
+* Valid and invalid dates
+* `ReadIntNumber()`
+* `ReadDblNumber()`
+* `ReadIntNumberBetween()`
+* `ReadDblNumberBetween()`
+* Invalid input handling
+* Input stream recovery
+
+The goal of the testing program is to verify the behavior of the class and demonstrate how its functions can be used in real Console Applications.
 
 ---
 
@@ -205,8 +210,8 @@ The class can be tested with:
 
 This class currently works with:
 
-* `clsString`
 * `clsDate`
+* `clsString`
 
 Make sure the required header files are available in the project.
 
